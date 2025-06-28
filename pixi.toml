@@ -1,0 +1,49 @@
+[project]
+name = "burnout"
+version = "0.1.0"
+description = "Pytest framework for testing PyTorch models against MAX graphs"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+license = "MIT"
+channels = ["conda-forge", "pytorch"]
+
+[target.conda-forge]
+python = ">=3.12"
+
+[dependencies]
+python = ">=3.12"
+pytest = ">=7.0.0"
+torch = ">=2.0.0"
+numpy = ">=1.24.0"
+
+[dev-dependencies]
+ruff = ">=0.1.0"
+black = ">=23.0.0"
+isort = ">=5.12.0"
+mypy = ">=1.5.0"
+pre-commit = ">=3.3.0"
+pytest-cov = ">=4.0.0"
+pytest-mock = ">=3.10.0"
+
+# Custom channels for modular
+[[channels]]
+name = "modular-nightly"
+url = "https://dl.modular.com/public/nightly/python/simple/"
+priority = 1
+
+[[channels]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = 2
+
+[tasks]
+install = "pip install -e ."
+install-dev = "pip install -e .[dev] && pre-commit install"
+format = "ruff format . && black . && isort ."
+format-mojo = "mojo format ."
+format-all = "ruff format . && black . && isort . && mojo format ."
+lint = "ruff check . && ruff check --fix ."
+type-check = "mypy ."
+check = "ruff format . && black . && isort . && mojo format . && ruff check . && ruff check --fix . && mypy ."
+clean = "find . -type f -name '*.pyc' -delete && find . -type d -name '__pycache__' -delete && find . -type d -name '*.egg-info' -exec rm -rf {} + && rm -rf .mypy_cache .pytest_cache build/ dist/ .uv/"
+setup = "pip install -e .[dev] && pre-commit install" 
