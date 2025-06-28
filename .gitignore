@@ -236,3 +236,9 @@ site/
 # IDE specific files
 .vscode/settings.json
 .idea/workspace.xml
+
+# pixi environments
+.pixi
+*.egg-info
+
+.*_cache

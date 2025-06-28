@@ -7,7 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "modular",
     "pytest>=7.0.0",
-    "torch>=2.0.0",
+    "torch>=2.6.0",
     "numpy>=1.24.0",
 ]
 
@@ -325,3 +325,16 @@ module = [
     "tests.*",
 ]
 disallow_untyped_defs = false
+
+[tool.pixi.workspace]
+channels = ["https://conda.modular.com/max-nightly", "conda-forge"]
+platforms = ["osx-arm64"]
+
+[tool.pixi.pypi-dependencies]
+burnout = { path = ".", editable = true }
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+
+[tool.pixi.tasks]
