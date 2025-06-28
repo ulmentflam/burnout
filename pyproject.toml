@@ -1,0 +1,351 @@
+[project]
+name = "burnout"
+version = "0.1.0"
+description = "Pytest framework for testing PyTorch models against MAX graphs"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "modular",
+    "pytest>=7.0.0",
+    "torch>=2.0.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.3.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Build configuration
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+# uv configuration
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.1.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.3.0",
+]
+
+[tool.black]
+include = '\.pyi?$'
+line-length = 88
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \.env
+  | build
+  | dist
+  | node_modules
+  | __pycache__
+  | \.pytest_cache
+  | \.coverage
+  | htmlcov
+  | \.mypy_cache
+  | \.ruff_cache
+  | \.cache
+  | \.DS_Store
+  | \.idea
+  | \.vscode
+  | \.ipynb_checkpoints
+  | jupyter_execute
+  | docs/_build
+  | site
+  | migrations
+  | staticfiles
+  | media
+  | logs
+  | tmp
+  | temp
+  | uploads
+  | downloads
+  | data
+  | datasets
+  | models
+  | checkpoints
+  | weights
+  | outputs
+  | results
+  | experiments
+  | runs
+  | wandb
+  | mlruns
+  | tensorboard_logs
+  | lightning_logs
+  | .*_cache
+  | .*_logs
+  | .*_output
+  | .*_results
+  | .*_temp
+  | .*_tmp
+)/
+'''
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+include = ["*.py"]
+exclude = [
+    # directories
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".tox",
+    ".venv",
+    ".env",
+    "build",
+    "dist",
+    "node_modules",
+    "__pycache__",
+    ".pytest_cache",
+    ".coverage",
+    "htmlcov",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".cache",
+    ".DS_Store",
+    ".idea",
+    ".vscode",
+    ".ipynb_checkpoints",
+    "jupyter_execute",
+    "docs/_build",
+    "site",
+    "migrations",
+    "staticfiles",
+    "media",
+    "logs",
+    "tmp",
+    "temp",
+    "uploads",
+    "downloads",
+    "data",
+    "datasets",
+    "models",
+    "checkpoints",
+    "weights",
+    "outputs",
+    "results",
+    "experiments",
+    "runs",
+    "wandb",
+    "mlruns",
+    "tensorboard_logs",
+    "lightning_logs",
+    # files
+    "*.ipynb",
+    "*.mojo",
+    "*.pyc",
+    "*.pyo",
+    "*.pyd",
+    "*.so",
+    "*.dll",
+    "*.dylib",
+    "*.egg",
+    "*.egg-info",
+    "*.whl",
+    "*.tar.gz",
+    "*.zip",
+    "*.rar",
+    "*.7z",
+    "*.bz2",
+    "*.gz",
+    "*.xz",
+    "*.lzma",
+    "*.sqlite",
+    "*.db",
+    "*.sql",
+    "*.json",
+    "*.yaml",
+    "*.yml",
+    "*.toml",
+    "*.ini",
+    "*.cfg",
+    "*.conf",
+    "*.log",
+    "*.txt",
+    "*.md",
+    "*.rst",
+    "*.html",
+    "*.css",
+    "*.js",
+    "*.ts",
+    "*.jsx",
+    "*.tsx",
+    "*.vue",
+    "*.svelte",
+    "*.rs",
+    "*.cpp",
+    "*.c",
+    "*.h",
+    "*.hpp",
+    "*.cc",
+    "*.cxx",
+    "*.cu",
+    "*.cuh",
+    "*.f90",
+    "*.f95",
+    "*.f03",
+    "*.f08",
+    "*.java",
+    "*.kt",
+    "*.scala",
+    "*.go",
+    "*.rb",
+    "*.php",
+    "*.pl",
+    "*.pm",
+    "*.sh",
+    "*.bash",
+    "*.zsh",
+    "*.fish",
+    "*.ps1",
+    "*.bat",
+    "*.cmd",
+    "*.exe",
+    "*.bin",
+    "*.out",
+    "*.app",
+    "*.dmg",
+    "*.pkg",
+    "*.deb",
+    "*.rpm",
+    "*.msi",
+    "*.exe",
+    "*.dll",
+    "*.so",
+    "*.dylib",
+    "*.a",
+    "*.lib",
+    "*.o",
+    "*.obj",
+    "*.class",
+    "*.jar",
+    "*.war",
+    "*.ear",
+    "*.apk",
+    "*.ipa",
+    "*.xcodeproj",
+    "*.xcworkspace",
+    "*.pbxproj",
+    "*.plist",
+    "*.entitlements",
+    "*.storyboard",
+    "*.xib",
+    "*.nib",
+    "*.strings",
+    "*.stringsdict",
+    "*.lproj",
+    "*.bundle",
+    "*.framework",
+    "*.app",
+    "*.ipa",
+    "*.apk",
+    "*.aab",
+    "*.keystore",
+    "*.jks",
+    "*.p12",
+    "*.pfx",
+    "*.crt",
+    "*.pem",
+    "*.key",
+    "*.csr",
+    "*.srl",
+    "*.p7b",
+    "*.p7c",
+    "*.p7m",
+    "*.p7s",
+    "*.p8",
+    "*.p8e",
+    "*.p8s",
+    "*.p8t",
+    "*.p8u",
+    "*.p8v",
+    "*.p8w",
+    "*.p8x",
+    "*.p8y",
+    "*.p8z",
+]
+
+[tool.ruff.lint]
+ignore = [
+  "E401", # multiple imports on one line
+  "E402", # TODO: import top of file
+  "E711", # TODO: comparison to None
+  "E712", # TODO: Unnecessary comparison to bool
+  "E721", # TODO: Use isinstance
+  "E722", # bare except
+  "E731", # TODO: Don't assign lambda
+  "E741", # TODO: Ambiguous variable name
+  "F403", # glob imports
+  "F405", # TODO: glob imports undefined
+  "F821", # TODO: Undefined names, means script is invalid
+  "F841", # TODO: unused variables
+  "D105", # undocumented-magic-method
+  "D106", # undocumented-public-nested-class
+  "D205", # missing-blank-line-after-summary
+  "D209", # new-line-after-last-paragraph
+  "D212", # multi-line-summary-first-line (to allow init with args only)
+  "UP007", # TODO: Enable when we drop 3.9
+  "ANN001", # TODO: Missing type annotation for function argument
+  "ANN002", # TODO: Missing type annotation for *args
+  "ANN003", # TODO: Missing type annotation for **kwargs
+  "ANN101", # TODO: Missing type annotation for `self` in method
+  "ANN201", # TODO: Missing return type annotation for public function
+  "ANN202", # TODO: Missing return type annotation for private function
+  "ANN204", # TODO: Missing return type annotation for special method
+  "ANN205", # TODO: Missing return type annotation for staticmethod
+  "ANN206", # TODO: Missing return type annotation for classmethod
+  "ANN401", # TODO: Dynamically typed expressions (typing.Any) are disallowed in `**kwargs`
+]
+extend-select = [
+  "I",
+  "D",
+  "UP",
+  "ANN",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"] # Ignore unused imports being re-exported
+# Slow rollout of pydocstyle lint:
+"!SDK/lib/API/python/max/{engine/api.py,driver/driver.py}" = ["D"]
+
+# isort configuration
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["burnout"]
+skip_glob = ["*.mojo"]
+
+[[tool.uv.index]]
+name = "modular-nightly"
+url = "https://dl.modular.com/public/nightly/python/simple/"
+priority = 1
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = 2
